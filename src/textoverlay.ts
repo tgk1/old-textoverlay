@@ -236,7 +236,9 @@ export default class Textoverlay {
   }
 
   private handleInput() {
-    this.render();
+    if (this.render) {
+      this.render();
+    }
   }
 
   private handleScroll() {

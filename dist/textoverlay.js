@@ -195,7 +195,9 @@ export default class Textoverlay {
         }, [document.createTextNode(this.textarea.value)]);
     }
     handleInput() {
-        this.render();
+        if (this.render) {
+            this.render();
+        }
     }
     handleScroll() {
         this.setOverlayScroll(this.textarea.scrollTop);
