@@ -113,12 +113,8 @@ export default class Textoverlay {
     setStyle(this.textarea, css.textarea);
 
     this.strategies = strategies;
-    this.textarea.addEventListener('input', () => {
-      this.handleInput();
-    });
-    this.textarea.addEventListener('scroll', () => {
-      this.handleScroll();
-    });
+    this.textarea.addEventListener('input', this.handleInput);
+    this.textarea.addEventListener('scroll', this.handleScroll);
     this.observer = new MutationObserver(() => {
       this.syncStyles();
     });
@@ -127,9 +123,7 @@ export default class Textoverlay {
       attributeFilter: ['style'],
     });
     // Listen to resize to detect changes in the element offset position.
-    this.resizeListener = () => {
-      this.syncStyles();
-    };
+    this.resizeListener = this.syncStyles;
     window.addEventListener('resize', this.resizeListener);
     this.render();
   }
